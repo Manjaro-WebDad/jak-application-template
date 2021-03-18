@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+from JAK.Application import JWebApp
+
+
+def myapp():
+    url = "https://your_url.com"
+    icon = "/usr/share/pixmaps/icon.png"
+
+    # Only use this section if you want forbid all other url's to open tabs, not on this list, otherwise it can be removed
+    tab_only_allow = url, "your_url.com"
+
+    css_overrides = ".someclass { color:red; }"
+
+    deny = "your_url.com"
+    
+    block = "your_url.com"
+    
+    # All tabs and windows are redirected to same window
+    rules = {"WebBrowserTab": tab_only_allow, "WebBrowserWindow": deny, "block": block}
+
+    menus = {"title": "Office", "entries": [\
+         ["Home", url],\
+         ["Another Title", "your_url.com"]\
+         ]}
+
+    webapp = JWebApp(
+                     window={
+                        "title": "Application Name",
+                        "icon": icon,
+                        "menus": menus,
+                     },
+
+                     webview={
+                        "webContents": start,
+                        "addCSS": css_overrides,
+                        "urlRules": rules,                       
+                        "online": True # if you want cookies
+                    })
+    return webapp
+myapp().run()
