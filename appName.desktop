@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open 
+[Desktop Entry]
+Name=appName 
+Comment=description.
+Exec=appName-web-jak
+Icon=applications-internet
+Terminal=false
+Type=Application
+Categories=Network;
